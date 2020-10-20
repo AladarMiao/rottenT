@@ -8,6 +8,7 @@ class MoviesController < ApplicationController
 
   def index
     @all_ratings = Movie.all_ratings
+    @ratings_to_show = []
     if params[:ratings].nil?
       session[:ratings] = params[:ratings]
     end
@@ -17,9 +18,9 @@ class MoviesController < ApplicationController
     end
     
     if (params[:ratings].nil? && !session[:ratings].nil?) || (params[:to_sort].nil? && !session[:to_sort].nil?)
-      @ratings_to_show = session[:ratings]
+      
       redirect_to movies_path("ratings" => session[:ratings], "to_sort" => session[:to_sort])
-    elsif(!session[:sort].nil?)  
+    elsif(!params[:ratings].nil? || !params[:to_sort].nil?)  
       if(params[:ratings].nil?)
         @ratings_to_show = []
         return @movies=Movie.all.order(session[:to_sort])
@@ -28,10 +29,10 @@ class MoviesController < ApplicationController
         return @movies = Movie.with_ratings(@ratings_to_show).order(session[:to_sort])
       end
     elsif !session[:ratings].nil? || !session[:to_sort].nil?
-      @ratings_to_show = session[:ratings]
-      redirect_to movies_path("ratings" =>@ratings_to_show, "to_sort" => session[:to_sort])
+      
+      redirect_to movies_path("ratings" => session[:ratings], "to_sort" => session[:to_sort])
     else
-      @ratings_to_show = []
+      @ratings_to_show = @all_ratings
       return @movies = Movie.all
     end
       

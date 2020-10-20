@@ -16,15 +16,9 @@
 <table class="table table-striped col-md-12" id="movies">
   <thead>
     <tr>
-      <th class='hilite' >
-
-      <a href="<%= movies_path({:to_sort => 'title'}) %>" id="title_header">Movie Title</a>
-<!--       <span> -->
-      </th>
+      <th class='hilite'><a href="<%= movies_path({:to_sort => 'title'}) %>" id="title_header">Movie Title</a></th>
       <th>Rating</th>
-      <th class='hilite'>
-      <a href="<%= movies_path({:to_sort => 'release_date'}) %>" id="release_date_header">Release Date</a>
-      </th>
+      <th class='hilite'><a href="<%= movies_path({:to_sort => 'release_date'}) %>" id="release_date_header">Release Date</a></th>
       <th>More Info</th>
     </tr>
   </thead>

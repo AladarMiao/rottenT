@@ -16,9 +16,10 @@
 <table class="table table-striped col-md-12" id="movies">
   <thead>
     <tr>
-      <th>Movie Title</th>
+      <th>{:class => hilite('title')}
+      %a#title_header{:href => movies_path({:to_sort =>'title'})} Movie Title</th>
       <th>Rating</th>
-      <th>Release Date</th>
+      <th>{:class => hilite('release_date')} %a#title_header{:href => movies_path({:to_sort => 'release_date'})} Release Date</th>
       <th>More Info</th>
     </tr>
   </thead>
